@@ -1,0 +1,40 @@
+{
+  "$schema": "https://raw.githubusercontent.com/nicehash/tauri/v2/core/tauri-config-schema/schema.json",
+  "productName": "PromoForge AI",
+  "version": "0.1.0",
+  "identifier": "ai.promoforge.desktop",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "PromoForge AI",
+        "width": 1400,
+        "height": 900,
+        "minWidth": 1024,
+        "minHeight": 680,
+        "decorations": true,
+        "resizable": true,
+        "center": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' asset: https://asset.localhost data:; connect-src ipc: http://ipc.localhost https://api.anthropic.com https://api.openai.com ws://localhost:*"
+    }
+  },
+  "plugins": {
+    "fs": {
+      "scope": {
+        "allow": ["**"],
+        "deny": []
+      }
+    },
+    "dialog": {
+      "all": true
+    }
+  }
+}

@@ -1,0 +1,37 @@
+[package]
+name = "promoforge"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "promoforge_lib"
+crate-type = ["lib", "cdylib", "staticlib"]
+
+[[bin]]
+name = "promoforge"
+path = "src/main.rs"
+
+[dependencies]
+promoforge-core = { path = "crates/core" }
+promoforge-storage = { path = "crates/storage" }
+promoforge-ingestion = { path = "crates/ingestion" }
+promoforge-pkb = { path = "crates/pkb" }
+promoforge-strategy = { path = "crates/strategy" }
+promoforge-api = { path = "crates/api" }
+tauri = { version = "2", features = ["tray-icon"] }
+tauri-plugin-fs = "2"
+tauri-plugin-dialog = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["full"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[profile.release]
+strip = true
+lto = true
+codegen-units = 1
+panic = "abort"
